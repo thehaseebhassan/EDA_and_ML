@@ -21,6 +21,15 @@ mpl.rcParams.update(mpl.rcParamsDefault)
 
 
 def fashion_news_freq(cust, trans):
+    '''
+        This function give frquency of the
+        fashion news
+        Args:
+            cust : customers dataframe
+            trans: transactions dataframe
+        Returns:
+            plot : fashion frequency news  plot
+    '''
 
     cust_ = pd.DataFrame(
         cust, columns=['club_member_status', 'fashion_news_frequency', 'customer_id'])
@@ -51,6 +60,15 @@ def fashion_news_freq(cust, trans):
 # ==============================================================================
 
 def desc_wordcloud(art):
+    '''
+        This function produces a word cloud
+        using the descriptions of the articles
+        Args:
+            art : articles dataframe
+        Returns
+            plot : wordcloud
+
+    '''
     prod_desc = art[art.detail_desc.notnull()].detail_desc.sample(5000).values
 
     from wordcloud import WordCloud, STOPWORDS
@@ -76,6 +94,15 @@ def desc_wordcloud(art):
 
 
 def cust_art(trans, cust):
+    '''
+        This function defines a relationship
+        between transactions and customers
+        Args:
+            trans : transaction dataframe
+            cust : customers dataframe
+        Returns:
+            plot : A plot showing customers and transactions relationship
+    '''
     trans['price_band'] = pd.qcut(trans['price'], q=4, labels=[
                                   'low', 'medium', 'high', 'very high'])
     trans['price'] = trans['price'].astype('float32')
@@ -104,6 +131,15 @@ def cust_art(trans, cust):
 
 
 def total_transacting(trans, cust):
+    '''
+        The function is providing a visualization
+        for total transacting customers
+        Args:
+            trans : transactions dataframe
+            cust :  customers dataframe
+        Returns:
+            plot : transacting customers data
+    '''
 
     # data
     transactions_train = trans
@@ -141,7 +177,16 @@ def total_transacting(trans, cust):
     plt.show()
 
 
-def articles_stock_price(trans):
+def articles_stock_price(trans, art):
+    '''
+        This function shows articles stock price
+        in the form of a plot/heatmap
+        Args:
+            trans : transactions dataframe
+            art : articles dataframe
+        Returns:
+            heatmap : articles stock price
+    '''
     transactions_train = trans
     transactions_train['t_dat'] = pd.to_datetime(
         transactions_train['t_dat'], infer_datetime_format=True)
@@ -185,6 +230,15 @@ def articles_stock_price(trans):
 
 
 def top_selling_colors(trans, art):
+    '''
+        This function processes the multiple dataframes
+        to get top selling colors
+        Args:
+            trans : transactions dataframe
+            art : articles dataframe
+        Returns:
+            list : top selling colors
+    '''
 
     transactions_train = trans
     # data
@@ -197,6 +251,15 @@ def top_selling_colors(trans, art):
 
 
 def top_articles(trans, art):
+    '''
+        This function gets the top articles
+        using multiple dataframes processing
+        Args:
+            trans : transactions dataframe
+            art : articles dataframe
+        Returns:
+            articles_df : The df sorted w.r.t top articles
+    '''
     # pre-processing
     train_df = trans
     articles_df = art
@@ -229,6 +292,17 @@ def top_articles(trans, art):
 
 
 def age_group(trans, cust, art):
+    '''
+        This function is most complex in the notebook
+        and returns the top articles for different age
+        groups of the customers
+        Args:
+            trans : transactions dataframe
+            cust : customers dataframe
+            art : articles dataframe
+        Returns: 
+        recommendations : top articles list w.r.t age groups
+    '''
     # processing
     transactions_df = trans
     transactions_df["t_dat"] = pd.to_datetime(transactions_df["t_dat"])

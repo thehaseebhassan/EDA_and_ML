@@ -22,6 +22,14 @@ mpl.rcParams.update(mpl.rcParamsDefault)
 
 
 def articles_key_features(art):
+    '''
+        This function returns the key 
+        features of the articles dataset
+        Args:
+            art : articles dataset
+        Returns:
+            plot : key features
+    '''
 
     # Articles Key Features
 
@@ -74,6 +82,17 @@ def articles_key_features(art):
 
 
 def articles_bar_plots(database, col, figsize=(13, 5), pct=False, label='articles'):
+    '''
+        This function gives a basic visualization 
+        about articles categories, counts, etc.
+        Args:
+            database : articles data
+            figsize : size of the plot
+            label : label in the dataframe
+        Returns
+            plot : A bar plot
+    '''
+
     fig, ax = plt.subplots(figsize=figsize, facecolor='#f6f6f6')
     for loc in ['bottom', 'left']:
         ax.spines[loc].set_visible(True)
@@ -109,6 +128,14 @@ def articles_bar_plots(database, col, figsize=(13, 5), pct=False, label='article
 # ==============================================================================
 
 def customers_key_features(cust):
+    '''
+        This function returns the key 
+        features of the customers dataset
+        Args:
+            cust : customers dataset
+        Returns:
+            plot : key features
+    '''
 
     mpl.rcParams.update(mpl.rcParamsDefault)
     cust_dtypes = cust.dtypes.value_counts()
@@ -157,6 +184,15 @@ def customers_key_features(cust):
 
 
 def customers_age(cust):
+    '''
+        This function gives an overview of the 
+        customers age in the dataset
+        Args:
+            cust : customers dataset
+        Returns:
+            plot : categorical visualization (age-wise)
+    '''
+
     fig, ax = plt.subplots(figsize=(10, 5))
     sns.set_style("darkgrid", {"axes.facecolor": ".9"})
     ax = sns.histplot(data=cust, x='age',
@@ -182,6 +218,14 @@ def customers_age(cust):
 
 
 def transactions_key_features(trans):
+    '''
+        This function returns the key 
+        features of the transactions dataset
+        Args:
+            trans : transactions dataset
+        Returns:
+            plot : key features
+    '''
 
     mpl.rcParams.update(mpl.rcParamsDefault)
 
@@ -231,6 +275,15 @@ def transactions_key_features(trans):
 
 
 def transactions_distribution(trans):
+    '''
+        This function gives the distribution of
+        the transactions
+        Args:
+            trans : transaction dataset
+        Returns:
+            plot : distribution plot
+    '''
+
     sns.set_style("darkgrid", {"axes.facecolor": ".9"})
     fig, ax = plt.subplots(figsize=(10, 5), facecolor='#f6f5f5')
     ax = sns.histplot(data=trans, x='price', bins=50, stat="percent")
